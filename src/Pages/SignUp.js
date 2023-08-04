@@ -16,6 +16,11 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import Spinner from "../utils/spinner";
 
+const isPasswordStrong = (password) => {
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  return strongPasswordRegex.test(password);
+};
+
 const SignupPage = () => {
   const { colorMode } = useColorMode();
   const [Name, setName] = useState("");
@@ -30,6 +35,51 @@ const SignupPage = () => {
     setLoading(true)
    try {
      e.preventDefault();
+     if (!isPasswordStrong(Password)) {
+      toast.custom(
+        (t) => (
+          <div
+            style={{
+              backgroundColor: '#007bff',
+              color: '#fff',
+              padding: '1rem',
+              borderRadius: '5px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+            onClick={() => toast.dismiss(t.id)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ffffff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-alert-circle"
+              style={{ flexShrink: 0 }}
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12" y2="16"></line>
+            </svg>
+            Please use a stronger password. It should contain at least one uppercase letter, one lowercase letter, one number, and have a minimum length of 8 characters.
+          </div>
+        ),
+        {
+          duration: 5000,
+        }
+      );
+      setLoading(false);
+      return ;
+     }
       if(Password!==ReEnter){
        toast.error('Password Fields Not Matching!')
        setLoading(false)
