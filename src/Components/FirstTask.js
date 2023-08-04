@@ -6,7 +6,33 @@ const ThreeDCard = () => {
   const { colorMode } = useColorMode();
   const borderColor = colorMode === "light" ? "gray.600" : "gray.200";
 
-  const isMobile = window.innerWidth <= 768; 
+  const isMobile = window.innerWidth <= 768; // Define your breakpoint for mobile screens
+
+  if (isMobile) {
+    return (
+      <Box
+        minH="100vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        background="linear-gradient(135deg, #3498db, #8e44ad)"
+      >
+        <Text
+          fontSize={{ base: "24px", md: "36px", lg: "48px" }}
+          fontWeight="bold"
+          color="white"
+          textAlign="center"
+          p={6}
+          borderRadius="md"
+          boxShadow="lg"
+          transformstyle="preserve-3d"
+          transition="transform 0.3s ease"
+        >
+          Create Your First Task!
+        </Text>
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -19,7 +45,7 @@ const ThreeDCard = () => {
         options={{
           scale: 1.1,
           max: 25,
-          gyroscope: false, 
+          gyroscope: false, // Disable gyroscope on mobile for a consistent experience
         }}
       >
         <Box
@@ -33,10 +59,7 @@ const ThreeDCard = () => {
           transition="transform 0.3s ease"
           borderTop={`1px solid ${borderColor}`}
           bgColor={colorMode === "light" ? "white" : "gray.700"}
-          _hover={!isMobile && { transform: "rotateY(10deg)" }} // Apply hover effect only on non-mobile devices
-
-          // Apply a subtle scale animation for mobile devices
-          transform={isMobile ? "scale(1.02)" : "none"}
+          _hover={{ transform: "rotateY(10deg)" }} // Apply hover effect only on non-mobile devices
         >
           <Text
             fontSize={{ base: "24px", md: "36px", lg: "48px" }}
@@ -47,6 +70,8 @@ const ThreeDCard = () => {
           >
             Create Your First Task!
           </Text>
+
+          {/* Shadow to create 3D effect */}
           <Box
             position="absolute"
             top={0}
