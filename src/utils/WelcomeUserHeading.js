@@ -8,7 +8,7 @@ const WelcomeUserHeading = ({user}) => {
     textAlign={'center'}
     bgGradient= 'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)'
     bgClip='text'
-    fontSize='6xl'
+    fontSize={['45px','6xl']}
     fontWeight='extrabold'
     >
     Welcome  {user}

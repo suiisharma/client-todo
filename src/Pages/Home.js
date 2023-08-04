@@ -31,7 +31,7 @@ const Home = () => {
             <CatchyTagline></CatchyTagline>
           </Box>
           <Spacer></Spacer>
-          <Box marginTop={"5vh"}>
+          <Box marginTop={["0vh","5vh"]}>
             {Posts && Posts[0] && (
               <ToDoCard
                 key={Posts[0]._id}
@@ -45,7 +45,7 @@ const Home = () => {
               ></ToDoCard>
             )}
           </Box>
-          <Box>
+          <Box >
             <AddTaskButton></AddTaskButton>
           </Box>
         </Flex>

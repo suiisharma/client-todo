@@ -16,7 +16,7 @@ const AddTaskBtn = () => {
     {Redirect && <Navigate to='/todo'></Navigate>}
           <Button
             position="fixed"
-            bottom={["10vh", "6vh", "2vh"]}
+            bottom={["2", "6", "2"]}
             right={4}
             size="lg"
             width={"70px"}
