@@ -6,13 +6,47 @@ import { userContext } from "../App";
 import AnimatedText from "../Components/FirstTask";
 import Spinner from "../utils/spinner";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 export const todoContext = createContext();
 
-const Todos = () => {
-  const { Posts } = useContext(userContext);
-  const [Loading, setLoading] = useState(false);
 
+const compareByDeadline = (task1, task2) => {
+  const deadline1 = new Date(task1.Deadline);
+  const deadline2 = new Date(task2.Deadline);
+
+  return deadline1 - deadline2;
+};
+
+
+const Todos = () => {
+  const { Posts ,setPosts} = useContext(userContext);
+  const [Loading, setLoading] = useState(false);
+   
+
+  useEffect(
+    ()=>{
+      const fetchAllPosts=async()=>{
+        try {
+          const res=await axios.get(`${process.env.REACT_APP_SERVER}/task/GetAllTasks`,{
+            headers:{
+              "Content-Type":"application/json"
+            }
+            ,
+            withCredentials:true
+          })
+           let data=res.data.message;
+            data.sort(compareByDeadline);          
+          setPosts(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchAllPosts()
+    }
+  )
+  
 
   return (
     <>
