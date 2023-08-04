@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.9963f045.css",
-    "main.js": "/static/js/main.01d43281.js",
+    "main.js": "/static/js/main.37666a4f.js",
     "static/media/TaskTonic_Logo.png": "/static/media/TaskTonic_Logo.904ff7f271d6d13301cc.png",
     "static/media/DarkMode.png": "/static/media/DarkMode.bf9f1c7d532ecb9dcc57.png",
     "index.html": "/index.html",
     "main.9963f045.css.map": "/static/css/main.9963f045.css.map",
-    "main.01d43281.js.map": "/static/js/main.01d43281.js.map"
+    "main.37666a4f.js.map": "/static/js/main.37666a4f.js.map"
   },
   "entrypoints": [
     "static/css/main.9963f045.css",
-    "static/js/main.01d43281.js"
+    "static/js/main.37666a4f.js"
   ]
 }

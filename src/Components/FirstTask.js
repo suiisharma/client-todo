@@ -1,11 +1,13 @@
 import React from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
-import {Tilt} from "react-tilt";
+import { Tilt } from "react-tilt";
 
 const ThreeDCard = () => {
   const { colorMode } = useColorMode();
   const borderColor = colorMode === "light" ? "gray.600" : "gray.200";
-  
+
+  const isMobile = window.innerWidth <= 768; 
+
   return (
     <Box
       minH="100vh"
@@ -13,7 +15,13 @@ const ThreeDCard = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Tilt options={{ scale: 1.1, max: 25 }}>
+      <Tilt
+        options={{
+          scale: 1.1,
+          max: 25,
+          gyroscope: false, 
+        }}
+      >
         <Box
           p={6}
           bg="white"
@@ -23,11 +31,12 @@ const ThreeDCard = () => {
           position="relative"
           transformstyle="preserve-3d"
           transition="transform 0.3s ease"
-          borderTop={`1px solid ${borderColor}`} // Set the border color only for the top side
+          borderTop={`1px solid ${borderColor}`}
           bgColor={colorMode === "light" ? "white" : "gray.700"}
-          _hover={{ transform: "rotateY(10deg)" }}
+          _hover={!isMobile && { transform: "rotateY(10deg)" }} // Apply hover effect only on non-mobile devices
 
-
+          // Apply a subtle scale animation for mobile devices
+          transform={isMobile ? "scale(1.02)" : "none"}
         >
           <Text
             fontSize={{ base: "24px", md: "36px", lg: "48px" }}
@@ -38,8 +47,6 @@ const ThreeDCard = () => {
           >
             Create Your First Task!
           </Text>
-         
-          {/* Shadow to create 3D effect */}
           <Box
             position="absolute"
             top={0}
