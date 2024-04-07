@@ -87,6 +87,7 @@ const LoginPage = () => {
                   setEmail(e.target.value);
                 }}
                 type="email"
+                value={Email}
                 placeholder="Enter your email"
               />
             </FormControl>
@@ -97,6 +98,7 @@ const LoginPage = () => {
                   setPassword(e.target.value);
                 }}
                 type="password"
+                value={Password}
                 placeholder="Enter your password"
               />
             </FormControl>
