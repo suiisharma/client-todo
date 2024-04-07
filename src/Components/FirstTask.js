@@ -1,90 +1,64 @@
-import React, { useState } from "react";
-import { Box, Text, useColorMode } from "@chakra-ui/react";
-import { Tilt } from "react-tilt";
+import React from 'react';
+import {Tilt} from 'react-tilt';
+import { Box, Heading, Text, useColorModeValue, keyframes } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
-const ThreeDCard = () => {
-  const { colorMode } = useColorMode();
-  const borderColor = colorMode === "light" ? "gray.600" : "gray.200";
+const glowingBlueShadow = keyframes`
+  0% {
+    box-shadow: 0 20px 25px -5px rgba(66, 153, 225, 0.1), 0 10px 10px -5px rgba(66, 153, 225, 0.04);
+  }
+  50% {
+    box-shadow: 0 20px 25px -5px rgba(66, 153, 225, 0.2), 0 10px 10px -5px rgba(66, 153, 225, 0.1);
+  }
+  100% {
+    box-shadow: 0 20px 25px -5px rgba(66, 153, 225, 0.1), 0 10px 10px -5px rgba(66, 153, 225, 0.04);
+  }
+`;
 
-  const [rolling, setRolling] = useState(false);
-  const diceFaces = [
-    "Create Your",
-    "First Task!",
-    "Create Your",
-    "First Task!",
-    "Create Your",
-    "First Task!",
-  ];
-  const diceRollDelay = 1000; // Time (in milliseconds) between dice face changes
-
-  const handleRollDice = () => {
-    setRolling(true);
-    setTimeout(() => {
-      setRolling(false);
-    }, diceRollDelay);
-  };
+const FirstTaskCard = () => {
+  const cardBg = useColorModeValue('white', 'gray.800');
 
   return (
-    <Box
-      minH="100vh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
+    <motion.div
+      initial={{ scale: 0.95, y: 20, opacity: 0 }}
+      animate={{ scale: 1, y: 0, opacity: 1 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
     >
-      <Tilt
-        options={{
-          scale: 1.2, // Adjust the scale for a larger dice
-          max: 25,
-          gyroscope: false,
-        }}
-      >
+      <Tilt className="Tilt" options={{ max: 25 }}>
         <Box
-          p={8} // Increase padding for a larger dice
-          bgGradient="linear(to bottom, #fca5a5, #fcbacb)" // Customize the gradient colors
-          borderRadius="50%" // Make it a circle to resemble a dice
-          boxShadow="xl"
+          bg={cardBg}
+          boxShadow={`0 20px 25px -5px rgba(66, 153, 225, 0.1), 0 10px 10px -5px rgba(66, 153, 225, 0.04)`}
+          animation={`${glowingBlueShadow} 5s ease-in-out infinite`}
+          backdropFilter="blur(10px)"
+          borderRadius="md"
+          padding="6"
           textAlign="center"
-          position="relative"
-          transformstyle="preserve-3d"
-          transition="transform 0.3s ease"
-          borderTop={`1px solid ${borderColor}`}
-          bgColor={colorMode === "light" ? "white" : "gray.700"}
-          onClick={handleRollDice}
-          onAnimationEnd={() => setRolling(false)}
-          _hover={!rolling && { transform: "rotateY(10deg)" }}
-          animation={rolling ? "diceRoll 2s infinite" : ""}
+          maxW="md"
         >
-          {diceFaces.map((face, index) => (
-            <Text
-              key={index}
-              fontSize={{ base: "20px", md: "24px", lg: "28px" }} // Adjust font sizes for different faces
-              fontWeight="bold"
-              color="white" // Change text color to white for better visibility
-              animation="bounce 1s infinite"
-              mb={2}
-              style={{ display: index === 0 ? "block" : "none" }}
-            >
-              {face}
-            </Text>
-          ))}
-          {/* Shadow to create 3D effect */}
-          <Box
-            position="absolute"
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            bg="gray.400"
-            opacity={0.2}
-            borderRadius="50%" // Match the dice's border radius for a circle shadow
-            pointerEvents="none"
-            zIndex="-1"
-            transform="translateZ(-1px)"
-          />
+          <Heading
+            as="h3"
+            size="xl"
+            mb="4"
+            color={useColorModeValue('gray.800', 'gray.200')}
+            animation="bounce 1s infinite"
+          >
+            Create Your First Task!
+          </Heading>
+          <Text fontSize="md" color={useColorModeValue('gray.500', 'gray.400')}>
+            Get started by creating your first task.
+          </Text>
         </Box>
       </Tilt>
-    </Box>
+    </motion.div>
   );
 };
 
-export default ThreeDCard;
+export default FirstTaskCard;
