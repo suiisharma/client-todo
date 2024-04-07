@@ -23,8 +23,8 @@ const LoginPage = () => {
   const { colorMode } = useColorMode();
   const navigate=useNavigate();
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [Email, setEmail] = useState("cimav18221@acentni.com");
+  const [Password, setPassword] = useState("basic#@#123As");
 
   const user = useContext(userContext);
 
