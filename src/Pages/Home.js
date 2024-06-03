@@ -28,29 +28,6 @@ const Home = () => {
   const [Loading, setLoading] = useState(false);
 
 
-  useEffect(
-    ()=>{
-      const fetchAllPosts=async()=>{
-        try {
-          const res=await axios.get(`${process.env.REACT_APP_SERVER}/task/GetAllTasks`,{
-            headers:{
-              "Content-Type":"application/json"
-            }
-            ,
-            withCredentials:true
-          })
-           let data=res.data.message;
-            data.sort(compareByDeadline);          
-          setPosts(data);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      if(!Posts)fetchAllPosts()
-    }
-  ,
-  []
-  )
   
 
   return (
