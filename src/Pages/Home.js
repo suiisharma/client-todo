@@ -12,17 +12,11 @@ import { useState } from "react";
 
 export const homeContext = createContext();
 
-const compareByDeadline = (task1, task2) => {
-  const deadline1 = new Date(task1.Deadline);
-  const deadline2 = new Date(task2.Deadline);
-
-  return deadline1 - deadline2;
-};
 
 
 const Home = () => {
 
-  const { User, Posts,setPosts } = useContext(userContext);
+  const { User, Posts} = useContext(userContext);
 
   const [Loading, setLoading] = useState(false);
 
