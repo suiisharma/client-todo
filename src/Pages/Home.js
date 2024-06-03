@@ -49,7 +49,7 @@ const Home = () => {
       if(!Posts)fetchAllPosts()
     }
   ,
-  [Posts,setPosts]
+  []
   )
   
 
