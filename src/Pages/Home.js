@@ -46,7 +46,7 @@ const Home = () => {
           console.log(error);
         }
       }
-      fetchAllPosts()
+      if(Posts)fetchAllPosts()
     }
   )
   
