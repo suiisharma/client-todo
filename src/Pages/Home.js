@@ -9,7 +9,6 @@ import WelcomeUserHeading from "../utils/WelcomeUserHeading";
 import { userContext } from "../App";
 import Spinner from "../utils/spinner";
 import { useState } from "react";
-import axios from "axios";
 
 export const homeContext = createContext();
 
@@ -28,7 +27,6 @@ const Home = () => {
   const [Loading, setLoading] = useState(false);
 
 
-  
 
   return (
     <>
